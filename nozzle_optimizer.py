@@ -348,9 +348,16 @@ divergence_lambda: {round(perf['divergence_lambda'],4)}
 def run_optimizer(params):
     global _hist; _hist = []
     name = params["name"]
-    out_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "results", name)
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    out_dir = os.path.join(base_dir, "results", name)
     if os.path.exists(out_dir):
-        raise FileExistsError(f"results/{name} exists. Use a different --name.")
+        i = 2
+        while os.path.exists(os.path.join(base_dir, "results", f"{name}_{i}")):
+            i += 1
+        name = f"{name}_{i}"
+        params = dict(params, name=name)
+        out_dir = os.path.join(base_dir, "results", name)
+        print(f"[INFO] Name already exists, using '{name}'")
     os.makedirs(out_dir)
 
     optimize_OF = params.get("optimize_OF", False)
