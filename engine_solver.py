@@ -18,7 +18,8 @@ class EngineSolver:
         R_U=ct.gas_constant
         gas=ct.Solution(self.mechanism)
         mF=1.0/(1.0+OF); mO=OF/(1.0+OF)
-        MW={'H2':2.016,'O2':32.0,'CH4':16.043,'C2H6':30.069,'N2':28.014}
+        MW={'H2':2.016,'O2':32.0,'CH4':16.043,'C2H6':30.069,'N2':28.014,
+            'C3H8':44.097,'C4H10':58.123}
         mwF=MW.get(self.fuel,28.0); mwO=MW.get(self.oxidizer,32.0)
         nF=mF/mwF; nO=mO/mwO; nt=nF+nO
         gas.TPX=300.0, max(Pc_est,1e4), {self.fuel:nF/nt, self.oxidizer:nO/nt}

@@ -4,12 +4,14 @@ chamber.py — Cantera-based rocket combustion chamber solver
 import numpy as np, cantera as ct, json, os, argparse, warnings
 
 R_UNIVERSAL = ct.gas_constant
-MW = {'H2':2.016,'O2':32.0,'CH4':16.043,'C2H6':30.069,'C2H4':28.054,'N2':28.014}
+MW = {'H2':2.016,'O2':32.0,'CH4':16.043,'C2H6':30.069,'C2H4':28.054,
+      'N2':28.014,'C3H8':44.097,'C4H10':58.123}
 PROPELLANT_PRESETS = {
-    'LOX/H2':  dict(oxidizer='O2',fuel='H2', OF_stoich=8.0, OF_opt=6.0),
-    'LOX/CH4': dict(oxidizer='O2',fuel='CH4',OF_stoich=4.0, OF_opt=3.4),
-    'LOX/C2H6':dict(oxidizer='O2',fuel='C2H6',OF_stoich=3.73,OF_opt=2.8),
-    'COLD_N2': dict(oxidizer=None,fuel='N2', OF_stoich=None,OF_opt=None),
+    'LOX/H2':   dict(oxidizer='O2', fuel='H2',   OF_stoich=8.0,  OF_opt=6.0),
+    'LOX/CH4':  dict(oxidizer='O2', fuel='CH4',  OF_stoich=4.0,  OF_opt=3.4),
+    'LOX/C2H6': dict(oxidizer='O2', fuel='C2H6', OF_stoich=3.73, OF_opt=2.8),
+    'LOX/C3H8': dict(oxidizer='O2', fuel='C3H8', OF_stoich=3.63, OF_opt=2.9),
+    'COLD_N2':  dict(oxidizer=None, fuel='N2',   OF_stoich=None, OF_opt=None),
 }
 
 def _mole_fractions(fuel, oxidizer, OF_mass):

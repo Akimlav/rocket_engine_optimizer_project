@@ -19,6 +19,8 @@ PROPELLANT_DENSITIES = {
     "O2":    1141.0,  # alias
     "RP1":   820.0,   # kerosene / RP-1
     "CH4":   424.0,   # liquid methane (111 K)
+    "C3H8":  530.0,   # liquid propane (~231 K, pressurized tank)
+    "C4H10": 600.0,   # liquid butane
     "N2O4":  1443.0,  # nitrogen tetroxide
     "UDMH":  791.0,   # unsymmetrical dimethylhydrazine
     "N2":    807.0,   # liquid nitrogen (77 K)
