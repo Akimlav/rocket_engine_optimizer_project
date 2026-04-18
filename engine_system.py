@@ -349,6 +349,13 @@ def main(params):
         log_path = save_engine_results(params, eng, noz, out_dir, name)
         print(f"[DONE] {log_path}")
 
+    try:
+        from rag_memory.hook import index_run
+        if index_run(name):
+            print(f"[rag-memory] indexed run '{name}'")
+    except Exception as e:
+        print(f"[rag-memory] skipped indexing: {e}")
+
     return log_path
 
 
